@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class SubDistrictProfile extends Model
 {
     use HasFactory;
+    protected $table = 'sub_district_profiles';
 }

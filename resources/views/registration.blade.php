@@ -42,6 +42,20 @@
                                 <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
                             </div>
                             <div class="form-group">
+                                {{-- <label for="id_kec"><i class="zmdi zmdi-lock"></i></label> --}}
+                                {{-- <input type="text" name="id_kecamatan" id="id_kecamatan" placeholder="Id"/> --}}
+                                <select name="id_kecamatan" class="form-control @error('id_kecamatan') is-invalid @enderror" required value="{{ old('id_kecamatan') }}">
+                                    <option value="" disabled selected>Pilih Kecamatan</option>
+                                        @foreach($kecamatan as $key)
+                                            <option value="{{ $key->id_kecamatan }}">{{ $key->nama_kecamatan }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="kode_kec"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="text" name="kode_kecamatan" id="kode_kecamatan" placeholder="Kode Kecamatan"/>
+                            </div>
+                            <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                             </div>

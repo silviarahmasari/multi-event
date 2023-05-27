@@ -60,25 +60,25 @@
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label" hidden>Id Profil</label>
                                                         <div class="col-8">
-                                                            <input id="nama_camat" name="id" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->id }}" hidden readonly required="required" type="text">
+                                                            <input id="id" name="id" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->id }}" hidden readonly required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label" hidden>Id User</label>
                                                         <div class="col-8">
-                                                            <input id="nama_camat" name="id_user" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->id_user }}" hidden readonly required="required" type="text">
+                                                            <input id="id_user" name="id_user" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->id_user }}" hidden readonly required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label">Kecamatan</label>
                                                         <div class="col-8">
-                                                            <input id="nama_camat" name="id_kecamatan" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->id_kecamatan }}" readonly required="required" type="text">
+                                                            <input id="id_kecamatan" name="id_kecamatan" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->id_kecamatan }}" readonly required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label">Kode Kecamatan</label>
                                                         <div class="col-8">
-                                                            <input id="nama_camat" name="kode_kecamatan" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->kode_kecamatan }}" readonly required="required" type="text">
+                                                            <input id="kode_kecamatan" name="kode_kecamatan" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->kode_kecamatan }}" readonly required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -90,25 +90,25 @@
                                                     <div class="form-group row">
                                                         <label for="name" class="col-4 col-form-label">Nomor Telpon Camat</label>
                                                         <div class="col-8">
-                                                            <input id="email" name="telp_camat" placeholder="example@gmail.com" class="form-control here" value="{{ $subdisctrictprofile[0]->telp_camat }}" required="required" type="text">
+                                                            <input id="telp_camat" name="telp_camat" placeholder="example@gmail.com" class="form-control here" value="{{ $subdisctrictprofile[0]->telp_camat }}" required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="lastname" class="col-4 col-form-label">alamat</label>
                                                         <div class="col-8">
-                                                            <input id="role_id" name="alamat" class="form-control here" type="text" value="{{ $subdisctrictprofile[0]->alamat }}">
+                                                            <input id="alamat" name="alamat" class="form-control here" type="text" value="{{ $subdisctrictprofile[0]->alamat }}">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="text" class="col-4 col-form-label">email</label>
+                                                        <label for="text" class="col-4 col-form-label">Email</label>
                                                         <div class="col-8">
-                                                            <input id="phone" name="email" placeholder="No Telpon" class="form-control here" value="{{ $subdisctrictprofile[0]->email }}" required="required" type="text">
+                                                            <input id="email" name="email" placeholder="Email" class="form-control here" value="{{ $subdisctrictprofile[0]->email }}" required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="text" class="col-4 col-form-label">Kode Pos</label>
                                                         <div class="col-8">
-                                                            <input id="phone" name="kodepos" placeholder="No Telpon" class="form-control here" value="{{ $subdisctrictprofile[0]->kodepos }}" required="required" type="text">
+                                                            <input id="kodepos" name="kodepos" placeholder="Kode Pos" class="form-control here" value="{{ $subdisctrictprofile[0]->kodepos }}" required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">

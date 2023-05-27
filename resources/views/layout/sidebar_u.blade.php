@@ -20,6 +20,7 @@
                 {{-- <li><a class="nav-link" href="{{ URL::to('dataPemesanan') }}"><i class="fab fa-readme"></i> <span>Pemesanan</span></a></li>
                 <li><a class="nav-link" href="{{ URL::to('dataPembayaran') }}"><i class="fas fa-money-check-alt"></i> <span>Pembayaran</span></a></li> --}}
                 <li><a class="nav-link" href="{{ URL::to('/') }}"><i class="fas fa-tasks"></i> <span>Histori Penjualan</span></a></li>
+                <li><a class="nav-link" href="{{ URL::to('logout') }}"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>
             </li>
         </ul>
     </aside>

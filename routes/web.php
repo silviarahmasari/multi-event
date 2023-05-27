@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SubDistrictProfileController;
 use App\Http\Controllers\ContactPeopleController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,32 +20,30 @@ use App\Http\Controllers\ContactPeopleController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('layout.mainlayout_u');
-});
+// Route::get('/', function () {
+//     return view('layout.mainlayout_u');
+// });
 
 Route::get('/registration', function () {
     return view('registration');
 });
 
-Route::get('/login', [UsersController::class, 'preLogin'])->name('login');
+Route::get('/', [UsersController::class, 'indexLogin'])->name('login');
 Route::post('/post_login', [UsersController::class, 'postLogin'])->name('post_login');
 Route::get('/register', [UsersController::class, 'preRegister'])->name('register');
 Route::post('/post_register', [UsersController::class, 'postRegister'])->name('post_register');
 Route::get('/logout', [UsersController::class, 'Logout'])->name('logout');
 
 Route::middleware(['auth', 'CheckRole:1'])->group(function () {
-    Route::get('/admin', function () {
-        return view('dashboard.admin');
-    });
+    Route::get('/admin', [DashboardController::class, 'adminCount']);
 });
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {
     Route::get('/camat', function () {
         return view('dashboard.camat');
     });
+    Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
+    Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
+    Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);
 });
 
-Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
-Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
-Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);

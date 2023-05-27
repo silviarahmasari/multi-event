@@ -8,30 +8,14 @@ use Carbon\Carbon;
 
 class SubDistrictProfileController extends Controller
 {
-    public function index(){
-        $data = array(
-            'menu' => 'subdisctrictprofile',
-            'submenu' => ''
-            );
-        return view('admin.jenisprodukadmin', $data);
-    }
-
-    public function indexdata(){
-        $subdisctrictprofile = DB::table('sub_district_profile')->get();
-        $data = array(
-            'menu' => 'subdisctrictprofile',
-            'submenu' => 'subdisctrictprofile',
-            'subdisctrictprofile' => $subdisctrictprofile
-            );
-        return view('admin.jenisprodukadmin', $data);
-    }
-
     public function indexupdateSubProfile(){
         $subdisctrictprofile = DB::table('sub_district_profiles')->get();
+        $contactpeople = DB::table('contact_people')->get();
         $data = array(
             'menu' => 'subdisctrictprofile',
             'submenu' => 'subdisctrictprofile',
-            'subdisctrictprofile' => $subdisctrictprofile
+            'subdisctrictprofile' => $subdisctrictprofile,
+            'contactpeople' => $contactpeople
         );
         // dd($data);
         return view('user.subdistrict.subdistrictdata', $data);
@@ -48,6 +32,32 @@ class SubDistrictProfileController extends Controller
             'alamat' => $post->alamat,
             'email' => $post->email,
             'kodepos' => $post->kodepos,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+    return redirect('/subprofil/editsubprofil');
+    }
+
+    public function indexContactPeople(){
+        $contactpeople = DB::table('contact_people')->get();
+        $data = array(
+            'menu' => 'contactpeople',
+            'submenu' => 'contactpeople',
+            'contactpeople' => $contactpeople,
+        );
+        return view('user.subdistrict.subdistrictdata', $data);
+    }
+
+    public function updateContactPeople(Request $post){
+
+        DB::table('contact_people')->where('id', $post->id)->update([
+            'id' => $post->id,
+            'id_profile' => $post->id_profile,
+            'nama_kontak' => $post->nama_kontak,
+            'jabatan_kontak' => $post->jabatan_kontak,
+            'telp_kontak' => $post->telp_kontak,
+            'email_kontak' => $post->email_kontak,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

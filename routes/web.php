@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SubDistrictProfileController;
+use App\Http\Controllers\ContactPeopleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,4 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {
 
 Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
 Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
+Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);

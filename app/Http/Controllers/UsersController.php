@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Kecamatan;
+use App\Models\SubDistrictProfile;
+use App\Models\ContactPerson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +35,7 @@ class UsersController extends Controller
             }
         }
         else{
-            return view('login');
+            return redirect('/');
         }
     }
 
@@ -51,38 +54,50 @@ class UsersController extends Controller
             }
         }
         else{
-            return view('login');
+            return redirect('/');
         }
     }
 
-    public function preRegister(){
-        return view('registration');
+    public function preRegister()
+    {
+        $kecamatan = Kecamatan::all();
+        return view('registration', compact('kecamatan'));
     }
 
     public function postRegister(Request $request)
     {
-        // $validate = $this->validate($request,[
-        //     'id_role'=>'required',
-        //     'nama'=>'required',
-        //     'password'=>'required|min:8',
-        //     'email'=>'required|email|unique:users',
-        //     're_pass'=>'required|same:password'
-        // ]);
-        // dd($request->id_role);
+        $this->validate($request,[
+            'id_role'   =>'required',
+            'name'      =>'required',
+            'password'  =>'required|min:8',
+            'email'     =>'required|email|unique:users',
+            're_pass'   =>'required|same:password'
+        ]);
 
-        $cek = User::create([
+        $user = User::create([
             'id_role'   => $request->id_role,
             'name'      => $request->name,
             'password'  => Hash::make($request->password),
             'email'     => $request->email
         ]);
 
-        return redirect('/login');
+        $profile = SubDistrictProfile::create([
+            'id_user'           => $user->id,
+            'id_kecamatan'      => $request->id_kecamatan,
+            'kode_kecamatan'    => $request->kode_kecamatan,
+            'email'             => $request->email
+        ]);
+
+        ContactPerson::create([
+            'id_profile'   => $profile->id
+        ]);
+
+        return redirect('/');
     }
 
     public function Logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 }

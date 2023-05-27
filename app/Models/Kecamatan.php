@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubDistrictProfile extends Model
+class Kecamatan extends Model
 {
     use HasFactory;
-    protected $table = 'sub_district_profiles';
+    protected $table = 'tbl_kecamatan';
 
     protected $fillable = [
-        'id_user',
         'id_kecamatan',
-        'kode_kecamatan'
+        'id_kota',
+        'nama_kecamatan'
     ];
 }

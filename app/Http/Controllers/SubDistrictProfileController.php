@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class SubDistrictProfileController extends Controller
 {
@@ -23,8 +24,7 @@ class SubDistrictProfileController extends Controller
 
     public function updateSubProfile(Request $post){
         $lala = DB::table('sub_district_profiles')->update([
-            'id' => '1',
-            'id_user' => '2',
+            'id_user' => Auth::user()->id,
             'id_kecamatan' => $post->id_kecamatan,
             'kode_kecamatan' => $post->kode_kecamatan,
             'nama_camat' => $post->nama_camat,

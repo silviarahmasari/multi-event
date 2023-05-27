@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\SubDistrictProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,6 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {
         return view('dashboard.camat');
     });
 });
+
+Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
+Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);

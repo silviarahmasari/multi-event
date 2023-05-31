@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SubDistrictProfileController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,14 @@ Route::get('/logout', [UsersController::class, 'Logout'])->name('logout');
 
 Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'adminCount']);
+
+    // sport -> cabor
+    Route::get('/sport/index', [SportController::class, 'index']);
+    Route::get('/sport/create', [SportController::class, 'create']);
+    Route::post('/sport/store', [SportController::class, 'store']);
+    Route::get('/sport/show/{sport}', [SportController::class, 'show']);
+    Route::get('/sport/edit/{sport}', [SportController::class, 'edit']);
+    Route::post('/sport/update/{sport}', [SportController::class, 'update']);
 });
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {
@@ -46,4 +55,3 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {
     Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
     Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);
 });
-

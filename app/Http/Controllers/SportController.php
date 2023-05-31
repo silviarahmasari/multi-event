@@ -39,9 +39,13 @@ class SportController extends Controller
         $sport = new Sport;
         $sport -> sport_name = $request -> sport_name;
         $sport -> notes = $request -> notes;
+        // dd($sport);
         $sport -> save();
-        
-        return redirect('sport/index')->with('success', 'Data created successfully.');
+
+        if(!$sport->id){
+            return redirect('sport/index')->with('error', 'Data gagal disimpan.');
+        }
+        return redirect('sport/index')->with('success', 'Data berhasil disimpan.');
     }
 
     /**
@@ -66,9 +70,6 @@ class SportController extends Controller
      */
     public function edit(Sport $sport)
     {
-        $sport = Sport::find($id);
-        $sport->get();
-
         return view('sport.edit', compact('sport'));
     }
 
@@ -81,13 +82,9 @@ class SportController extends Controller
      */
     public function update(Request $request, Sport $sport)
     {
-        $sport = Sport::find($id);
-        $sport->sport_name = $request->sport_name;
-        $sport->notes = $request->notes;
+        $sport->update($request->all());
 
-        $sport->update();
-
-        return redirect('sport/index')->with('success', 'Data updated successfully.');
+        return redirect('sport/index')->with('success', 'Data berhasil diperbarui.');
     }
 
     /**

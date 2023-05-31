@@ -19,19 +19,17 @@
       <div class="main-content">
         <section class="section">
           @yield('content')
-          <div class="section-body">
           
-            @yield('script')
-          
+            
         </section>
-      </div>
       </div>
       @include('layout/footer')
     </div>
   </div>
-
-@include('layout/js_global')
-@yield('custom_script')
+  
+  @include('layout/js_global')
+  @yield('script')
+  @yield('custom_script')
 </body>
 
 

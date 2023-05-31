@@ -1,23 +1,20 @@
 @extends('layout.mainlayout')
-@section('page_title' , '')
+@section('title', 'Dashboard Admin')
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard Admin</title>
-    <style type="text/css">
-        .left    { text-align: left;}
-        .right   { text-align: right;}
-        .center  { text-align: center;}
-        .justify { text-align: justify;}
-    </style>
-</head>
+@section('custom_css')
+<style type="text/css">
+    .left    { text-align: left;}
+    .right   { text-align: right;}
+    .center  { text-align: center;}
+    .justify { text-align: justify;}
+</style>
+@endsection
 
 @section('content')
-<body>
-    <div class="section-header">
-        <h1> Selamat Datang <span style="color:red">{{ Auth::user()->name }}</span></h1>
-    </div>
+<div class="section-header">
+    <h1> Selamat Datang <span style="color:red">{{ Auth::user()->name }}</span></h1>
+</div>
+<div class="section-body">
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
@@ -80,6 +77,5 @@
             </div>
         </div>
     </div>
-</body>
+</div>
 @endsection
-</html>

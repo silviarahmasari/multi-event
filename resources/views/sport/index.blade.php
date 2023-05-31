@@ -70,7 +70,9 @@
                                             <td class="text-center">{{ $item->created_at }}</td>
                                             <td class="text-center">{{ $item->updated_at }}</td>
                                             <td class="text-center"><a href="{{ URL::to('sport/edit/' . $item->id) }}"
-                                                    class="btn btn-secondary">Detail</a>
+                                                    class="btn btn-warning">Edit</a><a
+                                                    href="{{ URL::to('sport/delete/' . $item->id) }}"
+                                                    class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach

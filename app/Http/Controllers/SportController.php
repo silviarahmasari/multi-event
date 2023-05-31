@@ -95,9 +95,11 @@ class SportController extends Controller
      */
     public function destroy(Sport $sport)
     {
-        $sport = Sport::find($id);
         $sport->delete();
 
-        return redirect('sport/index')->with('success', 'Data deleted successfully');
+        if(!$sport->id){
+            return redirect('sport/index')->with('error', 'Data gagal dihapus.');
+        }
+        return redirect('sport/index')->with('success', 'Data berhasil dihapus');
     }
 }

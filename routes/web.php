@@ -45,6 +45,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/sport/show/{sport}', [SportController::class, 'show']);
     Route::get('/sport/edit/{sport}', [SportController::class, 'edit']);
     Route::post('/sport/update/{sport}', [SportController::class, 'update']);
+    Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
 });
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {

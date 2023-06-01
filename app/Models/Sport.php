@@ -18,12 +18,12 @@ class Sport extends Model
     public $incrementing = true;
 
     public function getCreatedAtAttribute($date)
-{
-    return \Carbon\Carbon::parse($this->attributes['created_at'])->format('d-m-y H:i');
-}
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])->format('d-m-y H:i');
+    }
 
-public function getUpdatedAtAttribute($date)
-{
-    return \Carbon\Carbon::parse($this->attributes['updated_at'])->format('d-m-y H:i');
-}
+    public function getUpdatedAtAttribute($date)
+    {
+        return \Carbon\Carbon::parse($this->attributes['updated_at'])->format('d-m-y H:i');
+    }
 }

@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="section-header">
-        <h1>Pendaftaran Grup</h1>
+        <h1>Edit Pendaftaran</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item"><a href="{{ URL::to('camat') }}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{ URL::to('mapdistrictsport/index') }}">Pendaftaran</a></div>
@@ -17,15 +17,12 @@
                     <h4>Detail Grup</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ URL::to('mapdistrictsport/store') }}" method="POST" enctype="multipart/form-data">
+                    <!-- <form action="{{ URL::to('mapdistrictsport/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="id_sport" class="col-4 col-form-label">Cabang Olahraga</label>
                             <div class="col-8">
                                 <select name="id_sport" id="id_sport" class="form-control">
-                                    @foreach($sports as $sport)
-                                        <option value="{{ $sport->id }}">{{ $sport->sport_name }}</option>
-                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -40,7 +37,7 @@
                                 <button class="btn btn-success" type="submit"><i class="fa fa-plus-square"> Member </i></button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </div>

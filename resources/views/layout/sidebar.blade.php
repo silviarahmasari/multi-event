@@ -13,7 +13,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ URL::to('admin') }}">Admin</a></li>
                         <li><a class="nav-link" href="{{ URL::to('sport/index') }}">Sport</a></li>
-                        <li><a class="nav-link" href="{{ URL::to('pendaftaran') }}">Pendaftaran</a></li>
+                        <li><a class="nav-link" href="{{ URL::to('mapdistrictsport/create') }}">Pendaftaran</a></li>
                         <li><a class="nav-link" href="{{ URL::to('camat') }}">Camat</a></li>
                         <li><a class="nav-link" href="{{ URL::to('participant') }}">Peserta</a></li>
                     </ul>
@@ -23,6 +23,7 @@
 
                 @case(Auth::user()->id_role === 3)
                 <li><a class="nav-link" href="{{ URL::to('camat') }}"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li><a class="nav-link" href="{{ URL::to('mapdistrictsport/index') }}"><i class="fas fa-home"></i><span>Pendaftaran</span></a></li>
                 @break
             @endswitch
                 <li><a class="nav-link" href="{{ URL::to('logout') }}"><i class="fa fa-power-off"></i><span>Logout</span></a></li>

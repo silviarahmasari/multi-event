@@ -1,8 +1,8 @@
   <!-- General JS Scripts -->
 
-  <!-- General JS Scripts -->
+  {{-- <!-- General JS Scripts -->
   <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
-  <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script> --}}
 
   <script src="{{ asset('assets/jQuery/jquery.js') }}"></script>
   {{-- <script src="{{ asset ('assets/js/popper.min.js') }}"></script>

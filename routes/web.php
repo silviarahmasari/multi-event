@@ -6,6 +6,8 @@ use App\Http\Controllers\SubDistrictProfileController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SportController;
+use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\MapDistrictSportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +20,26 @@ use App\Http\Controllers\SportController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/mapdistrictsport/create/partisipan', function () {
+    return view('user.pendaftaran.pendaftaranpartisipan');
+});
+
+Route::get('/mapdistrictsport/create/test2', function () {
+    return view('user.pendaftaran.test2');
+});
+
+Route::get('/mapdistrictsport/create/pendaftaranedit', function () {
+    return view('user.pendaftaran.pendaftaranedit');
+});
 // Route::get('/', function () {
 //     return view('layout.mainlayout_u');
 // });
+Route::get('/pendaftaran', function () {
+    return view('user.pendaftaran.pendaftaran');
+});
+Route::get('/', function () {
+    return view('layout.mainlayout_u');
+});
 
 Route::get('/registration', function () {
     return view('registration');
@@ -48,10 +64,28 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
 });
 
-Route::middleware(['auth', 'CheckRole:3'])->group(function () {
+Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
     Route::get('/camat', [DashboardController::class, 'camatCount']);
     
     Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
     Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
     Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);
+
+    // mapdistrictsport -> mapdistrictsport
+    Route::get('/mapdistrictsport/index', [MapDistrictSportController::class, 'index']);
+    Route::get('/mapdistrictsport/create', [MapDistrictSportController::class, 'create']);
+    Route::post('/mapdistrictsport/store', [MapDistrictSportController::class, 'store']);
+    Route::get('/mapdistrictsport/show/{id}', [MapDistrictSportController::class, 'show']);
+    Route::get('/mapdistrictsport/edit/{id}', [MapDistrictSportController::class, 'edit']);
+    Route::post('/mapdistrictsport/update/{id}', [MapDistrictSportController::class, 'update']);
+    Route::get('/mapdistrictsport/delete/{id}', [MapDistrictSportController::class, 'destroy']);
+
+    // participants -> participant
+    Route::get('/participant/index', [ParticipantController::class, 'index']);
+    Route::get('/participant/create/{id}', [ParticipantController::class, 'create']);
+    Route::post('/participant/store/{id}', [ParticipantController::class, 'store']);
+    Route::get('/participant/show/{id}', [ParticipantController::class, 'show']);
+    Route::get('/participant/edit/{id}', [ParticipantController::class, 'edit']);
+    Route::post('/participant/update/{id}', [ParticipantController::class, 'update']);
+    Route::get('/participant/delete/{id}', [ParticipantController::class, 'destroy']);
 });

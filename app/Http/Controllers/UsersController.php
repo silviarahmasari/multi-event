@@ -25,13 +25,13 @@ class UsersController extends Controller
     public function preLogin(){
         if(Auth::check()){
             if(Auth::user()->id_role == 1 ){
-                return redirect('/admin');
+                return redirect('/dashboard/admin');
             }
             elseif(Auth::user()->id_role == 2 ){
-                return redirect('/ketupel');
+                return redirect('/dashboard/ketupel');
             }
             else {
-                return redirect('/camat');
+                return redirect('/dashboard/camat');
             }
         }
         else{
@@ -44,13 +44,13 @@ class UsersController extends Controller
         // dd(Auth::attempt($data));
         if(Auth::attempt($data)){
             if(Auth::user()->id_role == 1 ){
-                return redirect('/admin');
+                return redirect('/dashboard/admin');
             }
             elseif(Auth::user()->id_role == 2 ){
-                return redirect('/ketupel');
+                return redirect('/dashboard/ketupel');
             }
             else {
-                return redirect('/camat');
+                return redirect('/dashboard/camat');
             }
         }
         else{

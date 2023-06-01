@@ -1,5 +1,5 @@
-@extends('layout.layout_ketupel')
-@section('title', 'Ketupel | Dashboard')
+@extends('layout.layout_admin')
+@section('title', 'Participant | Index')
 
 @section('custom_css')
     <!-- CSS Libraries -->
@@ -9,43 +9,18 @@
 @endsection
 
 @section('content')
-    <div class="section-body">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-primary">
-                        <i class="far fa-user"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Jumlah Pendaftaran</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $countPendaftaran }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-danger">
-                        <i class="far fa-newspaper"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Jumlah olahraga aktif</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $cabor }}
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="section-header">
+        <h1>Data Participant</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
+            <div class="breadcrumb-item active"><a href="{{ URL::to('adminlist/index') }}">List Partisipan</a></div>
         </div>
+    </div>
+    <div class="section-body">
         <div class="col-12 col-md-12 col-lg-12 px-0">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h4>Daftar List Pendaftaran</h4>
+                    <h4>Daftar List Partisipan</h4>
                 </div>
                 @if (Session::has('success'))
                     <div class="alert alert-success alert-dismissible show fade mx-4">
@@ -74,22 +49,32 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th class="text-center">Nama Grup</th>
-                                        <th class="text-center">Nama Kecamatan</th>
-                                        <th class="text-center">Olahraga</th>
-                                        <th class="text-center">Notes</th>
-                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Pas Foto</th>
+                                        <th class="text-center">Nama Lengkap</th>
+                                        <th class="text-center">Tanggal Lahir</th>
+                                        <th class="text-center">Jenis Kelamin</th>
+                                        <th class="text-center">Alamat</th>
+                                        <th class="text-center">Domisili</th>
+                                        <th class="text-center">No KTP</th>
+                                        <th class="text-center">No KK</th>
+                                        <th class="text-center">No Akte</th>
+                                        <th class="text-center">No Ijazah</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($pendaftaran as $item)
+                                    @foreach ($participant as $item)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td class="text-center">{{ $item->group_name }}</td>
-                                            <td class="text-center">{{ $item->nama_kecamatan }}</td>
-                                            <td class="text-center">{{ $item->sport_name }}</td>
-                                            <td class="text-center">{{ $item->notes }}</td>
-                                            <td class="text-center">{{ $item->status }}</td>
+                                            <td class="text-center">{{ $item->pas_foto }}</td>
+                                            <td class="text-center">{{ $item->participant_name }}</td>
+                                            <td class="text-center">{{ $item->participant_dob }}</td>
+                                            <td class="text-center">{{ $item->participant_gender }}</td>
+                                            <td class="text-center">{{ $item->participant_address }}</td>
+                                            <td class="text-center">{{ $item->participant_domicile }}</td>
+                                            <td class="text-center">{{ $item->no_ktp }}</td>
+                                            <td class="text-center">{{ $item->no_kk }}</td>
+                                            <td class="text-center">{{ $item->no_akte }}</td>
+                                            <td class="text-center">{{ $item->no_ijazah }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

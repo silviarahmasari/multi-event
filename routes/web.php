@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KetupelController;
+use App\Http\Controllers\CamatController;
+use App\Http\Controllers\ParticipantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +40,16 @@ Route::post('/post_register', [UsersController::class, 'postRegister'])->name('p
 Route::get('/logout', [UsersController::class, 'Logout'])->name('logout');
 
 Route::middleware(['auth', 'CheckRole:1'])->group(function () {
-    Route::get('/admin', [DashboardController::class, 'adminCount']);
+    Route::get('/dashboard/admin', [DashboardController::class, 'dashboardAdmin']);
+
+    // cabor
+    Route::get('/camatlist', [CamatController::class, 'index']);
+
+    // admin
     Route::get('/adminlist', [AdminController::class, 'index']);
+
+    // admin
+    Route::get('/participantlist', [ParticipantController::class, 'index']);
 
     // sport -> cabor
     Route::get('/sport/index', [SportController::class, 'index']);
@@ -52,14 +62,12 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
 });
 
 Route::middleware(['auth', 'CheckRole:2'])->group(function () {
-    Route::get('/ketupel', [KetupelController::class, 'index']);
+    Route::get('/dashboard/ketupel', [KetupelController::class, 'index']);
 });
 
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {
-    Route::get('/camat', function () {
-        return view('dashboard.camat');
-    });
+    Route::get('/dashboard/camat', [DashboardController::class, 'dashboardCamat']);
     Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
     Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
     Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);

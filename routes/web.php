@@ -6,6 +6,8 @@ use App\Http\Controllers\SubDistrictProfileController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SportController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KetupelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,7 @@ Route::get('/logout', [UsersController::class, 'Logout'])->name('logout');
 
 Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'adminCount']);
+    Route::get('/adminlist', [AdminController::class, 'index']);
 
     // sport -> cabor
     Route::get('/sport/index', [SportController::class, 'index']);
@@ -47,6 +50,11 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::post('/sport/update/{sport}', [SportController::class, 'update']);
     Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
 });
+
+Route::middleware(['auth', 'CheckRole:2'])->group(function () {
+    Route::get('/ketupel', [KetupelController::class, 'index']);
+});
+
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {
     Route::get('/camat', function () {

@@ -11,7 +11,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-archive"></i> <span>Data
                         Master</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ URL::to('admin') }}">Admin</a></li>
+                    <li><a class="nav-link" href="{{ URL::to('adminlist') }}">Admin</a></li>
                     <li><a class="nav-link" href="{{ URL::to('sport/index') }}">Sport</a></li>
                     <li><a class="nav-link" href="{{ URL::to('pendaftaran') }}">Pendaftaran</a></li>
                     <li><a class="nav-link" href="{{ URL::to('camat') }}">Camat</a></li>

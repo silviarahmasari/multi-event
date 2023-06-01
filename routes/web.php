@@ -21,7 +21,7 @@ use App\Http\Controllers\MapDistrictSportController;
 */
 
 Route::get('/mapdistrictsport/create/partisipan', function () {
-    return view('user.pendaftaran.pendaftaranpartisipan');
+    return view('user.pendaftaran.pendaftaranpartisipan2');
 });
 
 Route::get('/mapdistrictsport/create/test2', function () {

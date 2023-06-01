@@ -69,9 +69,10 @@
                                             <td>{!! $item->group_name !!}</td>
                                             <td class="text-center">{{ $item->created_at }}</td>
                                             <td class="text-center">{{ $item->updated_at }}</td>
-                                            <td class="text-center"><a href="{{ URL::to('mapdistrictsport/edit/' . $item->id) }}"
+                                            <td class="text-center"><a
+                                                    href="{{ URL::to('mapdistrictsport/edit/' . $item->id_map_district_sports) }}"
                                                     class="btn btn-warning">Edit</a><a
-                                                    href="{{ URL::to('mapdistrictsport/delete/' . $item->id) }}"
+                                                    href="{{ URL::to('mapdistrictsport/delete/' . $item->id_map_district_sports) }}"
                                                     class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>

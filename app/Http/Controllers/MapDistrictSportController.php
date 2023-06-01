@@ -18,7 +18,10 @@ class MapDistrictSportController extends Controller
      */
     public function index()
     {
-        $mds = MapDistrictSport::leftjoin('sports','sports.id','=','map_district_sports.id_sport')->get();
+        $mds = MapDistrictSport::select('*','map_district_sports.id as id_map_district_sports')
+        ->join('sports','sports.id','=','map_district_sports.id_sport')
+        ->get();
+        // dd($mds);
 
         return view('user.pendaftaran.pendaftarandata', compact('mds'));
     }
@@ -67,7 +70,8 @@ class MapDistrictSportController extends Controller
         if(!$mds->id){
             return redirect('mapdistrictsport/index')->with('error', 'Pendaftaran grup gagal.');
         }
-        return redirect('participant/create/'.$mds->id)->with('success', 'Tambahkan partisipan dalam grup.');
+        return redirect('mapdistrictsport/index')->with('error', 'Pendaftaran grup gagal.');
+        // return redirect('participant/create/'.$mds->id)->with('success', 'Tambahkan partisipan dalam grup.');
     }
 
     /**
@@ -89,9 +93,21 @@ class MapDistrictSportController extends Controller
      */
     public function edit($id)
     {
-        $mds = MapDistrictSport::find($id);
+        $sports = Sport::all();
+        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport')
+        ->leftjoin('sports','sports.id','=','map_district_sports.id_sport')
+        ->leftjoin('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
+        ->where('map_district_sports.id', $id)
+        ->get();
+        $participants = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport', 'participants.id as id_participant')
+        ->leftjoin('sports','sports.id','=','map_district_sports.id_sport')
+        ->leftjoin('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
+        ->leftjoin('participants','participants.id','=','map_district_sports.id')
+        ->where('map_district_sports.id', $id)
+        ->get();
+        // dd($participants);
 
-        return view('user.pendaftaran.pendaftaranedit', compact('mds'));
+        return view('user.pendaftaran.pendaftaranedit', compact('sports','mds', 'participants'));
     }
 
     /**

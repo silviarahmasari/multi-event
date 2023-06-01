@@ -49,9 +49,8 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
 });
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {
-    Route::get('/camat', function () {
-        return view('dashboard.camat');
-    });
+    Route::get('/camat', [DashboardController::class, 'camatCount']);
+    
     Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
     Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
     Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);

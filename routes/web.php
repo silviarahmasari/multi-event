@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CamatController;
 use App\Http\Controllers\SubDistrictProfileController;
+use App\Http\Controllers\MapDistrictSportController;
+use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SportController;
@@ -59,7 +63,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/adminlist', [AdminController::class, 'index']);
 
     // admin
-    Route::get('/participantlist', [ParticipantController::class, 'index']);
+    Route::get('/participantlist', [ParticipantController::class, 'index2']);
 
     // sport -> cabor
     Route::get('/sport/index', [SportController::class, 'index']);
@@ -71,7 +75,11 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
 });
 
-Route::middleware(['auth', 'CheckRole:3'])->group(function () {
+Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+    Route::get('/dashboard/camat', [DashboardController::class, 'camatCount']);
+    
+    Route::get('/subprofil/editsubprofil/{id}', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
+
     Route::get('/camat', function () {
         return view('dashboard.camat');
     });
@@ -89,7 +97,7 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {
     Route::get('/mapdistrictsport/delete/{id}', [MapDistrictSportController::class, 'destroy']);
 
     // participants -> participant
-    Route::get('/participant/index', [ParticipantController::class, 'index']);
+    Route::get('/participant/index/{id}', [ParticipantController::class, 'index']);
     Route::get('/participant/create/{id}', [ParticipantController::class, 'create']);
     Route::post('/participant/store/{id}', [ParticipantController::class, 'store']);
     Route::get('/participant/show/{id}', [ParticipantController::class, 'show']);

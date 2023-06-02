@@ -1,4 +1,4 @@
-@extends('layout.mainlayout')
+@extends('layout.layout_admin')
 @section('title', 'Admin | Sport')
 
 @section('custom_css')

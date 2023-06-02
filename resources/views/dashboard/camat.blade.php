@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-@extends('layout.mainlayout')
+@extends('layout.layout_camat')
 @section('title', 'Dashboard Camat')
 
 @section('custom_css')
@@ -91,5 +90,3 @@
         </div>
     </div>
 @endsection
-=======
->>>>>>> 1db3d73d3553158088d261e281557f0707e45369

@@ -38,6 +38,7 @@ class SportController extends Controller
     {
         $sport = new Sport;
         $sport -> sport_name = $request -> sport_name;
+        $sport -> max_participant = $request -> max_participant;
         $sport -> notes = $request -> notes;
         // dd($sport);
         $sport -> save();

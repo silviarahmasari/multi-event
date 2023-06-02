@@ -1,4 +1,4 @@
-@extends('layout.mainlayout')
+@extends('layout.layout_camat')
 @section('title', 'Camat | Pendaftaran')
 
 @section('content')
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="offset-10 col-8">
-                                <button class="btn btn-success" type="submit"><i class="fa fa-plus-square"> Member </i></button>
+                                <button class="btn btn-success" type="submit"><i class="fa fa-plus-square"> Tambah Partisipan </i></button>
                             </div>
                         </div>
                     </form>

@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Participant;
 use App\Models\MapDistrictSport;
+use App\Models\Sport;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 
 class ParticipantController extends Controller
 {
+    public function index2()
+    {
+        $participant = Participant::get();
+
+        return view('participant.index', compact('participant'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,9 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        //
+        $sports = Sport::all();
+        $kecamatan = Kecamatan::all();
+        return view('user.pendaftaran.pendaftaranpartisipan2');
     }
 
     /**
@@ -27,7 +37,7 @@ class ParticipantController extends Controller
     {
         $mds = MapDistrictSport::find($id);
 
-        return redirect('user.pendaftaran.pendaftaranpartisipan', compact('mds'));
+        return view('user.pendaftaran.pendaftaranpartisipan', compact('mds'));
     }
 
     /**
@@ -39,7 +49,7 @@ class ParticipantController extends Controller
     public function store(Request $request, $id)
     {
         
-        
+        $mds = MapDistrictSport::find($id);
         $participant = new Participant;
         $participant -> id_map_district_sport = $id;
         $participant -> participant_name = $request -> participant_name;
@@ -47,7 +57,6 @@ class ParticipantController extends Controller
         $participant -> participant_gender = $request -> participant_gender;
         $participant -> participant_address = $request -> participant_address;
         $participant -> participant_domicile = $request -> participant_domicile;
-        $participant -> participant_status = $request -> participant_status;
         $participant -> no_ktp = $request -> no_ktp;
         $participant -> no_kk = $request -> no_kk;
         $participant -> no_akte = $request -> no_akte;

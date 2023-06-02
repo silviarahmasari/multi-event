@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sport;
 use App\Models\MapDistrictSport;
 use App\Models\SubDistrictProfile;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,8 +35,10 @@ class MapDistrictSportController extends Controller
     public function create()
     {
         $sports = Sport::all();
+        $kecamatan = Kecamatan::all();
+
         
-        return view('user.pendaftaran.pendaftaran', compact('sports'));
+        return view('user.pendaftaran.pendaftaran', compact('sports','kecamatan'));
     }
 
     /**
@@ -66,12 +69,12 @@ class MapDistrictSportController extends Controller
         $mds -> group_name = $request -> group_name;
         $mds -> status = "On Process";
         $mds -> save();
-        
+        // dd($mds->id);
         if(!$mds->id){
-            return redirect('mapdistrictsport/index')->with('error', 'Pendaftaran grup gagal.');
+            return redirect('/participant/index')->with('error', 'Pendaftaran grup gagal.');
         }
-        return redirect('mapdistrictsport/index')->with('error', 'Pendaftaran grup gagal.');
-        // return redirect('participant/create/'.$mds->id)->with('success', 'Tambahkan partisipan dalam grup.');
+        // return redirect('/participant/index')->with('error', 'Pendaftaran grup gagal.');
+        return redirect('participant/create/'.$mds->id)->with('success', 'Tambahkan partisipan dalam grup.');
     }
 
     /**

@@ -67,7 +67,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
     Route::get('/camat', [DashboardController::class, 'camatCount']);
     
-    Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
+    Route::get('/subprofil/editsubprofil/{id}', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
     Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
     Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);
 
@@ -81,7 +81,7 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttt
     Route::get('/mapdistrictsport/delete/{id}', [MapDistrictSportController::class, 'destroy']);
 
     // participants -> participant
-    Route::get('/participant/index', [ParticipantController::class, 'index']);
+    Route::get('/participant/index/{id}', [ParticipantController::class, 'index']);
     Route::get('/participant/create/{id}', [ParticipantController::class, 'create']);
     Route::post('/participant/store/{id}', [ParticipantController::class, 'store']);
     Route::get('/participant/show/{id}', [ParticipantController::class, 'show']);

@@ -37,7 +37,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{-- Update Profil --}}
-                                        <form action="#" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ URL::to('/participant/store/'.$mds->id) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div id="kotak">
                                                 <div class="button-group">
@@ -53,7 +53,7 @@
                                                                     <div class="form-group row">
                                                                         <label for="participant_name" class="col-4 col-form-label">Nama Partisipan</label>
                                                                         <div class="col-8">
-                                                                            <input name="participant_name[]" placeholder="Nama Partisipan" class="form-control here"  required="required" type="text">
+                                                                            <input name="participant_name" placeholder="Nama Partisipan" class="form-control here"  required="required" type="text">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -61,7 +61,7 @@
                                                                     <div class="form-group row">
                                                                         <label for="participant_dob" class="col-4 col-form-label">Tanggal Lahir</label>
                                                                         <div class="col-8">
-                                                                            <input name="participant_dob[]" placeholder="Tanggal Lahir Partisipan" class="form-control here" required="required" type="date">
+                                                                            <input name="participant_dob" placeholder="Tanggal Lahir Partisipan" class="form-control here" required="required" type="date">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -71,11 +71,11 @@
                                                                     <div class="form-group row">
                                                                         <label for="participant_gender" class="col-4 col-form-label">Jenis Kelamin</label>
                                                                         <div class="col-8">
-                                                                            <select name="participant_gender[]" class="form-control" required>
+                                                                            <select name="participant_gender" class="form-control" required>
                                                                                 <option value="Laki-laki">Laki-Laki</option>
                                                                                 <option value="Perempuan">Perempuan</option>
                                                                             </select>
-                                                                            <!-- <input name="participant_gender[]" placeholder="Tanggal Lahir Partisipan" class="form-control here" required="required" type="text"> -->
+                                                                            <!-- <input name="participant_gender" placeholder="Tanggal Lahir Partisipan" class="form-control here" required="required" type="text"> -->
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -83,7 +83,7 @@
                                                                     <div class="form-group row">
                                                                         <label for="participant_domicile" class="col-4 col-form-label">Alamat Domisili</label>
                                                                         <div class="col-8">
-                                                                            <input name="participant_domicile[]" placeholder="Alamat Domisili Partisipan" class="form-control here" required="required" type="text">
+                                                                            <input name="participant_domicile" placeholder="Alamat Domisili Partisipan" class="form-control here" required="required" type="text">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -93,7 +93,7 @@
                                                                     <div class="form-group row">
                                                                         <label for="partisipant_address" class="col-4 col-form-label">Alamat KTP</label>
                                                                         <div class="col-8">
-                                                                            <input name="partisipant_address[]" placeholder="Alamat KTP Partisipan" class="form-control here" required="required" type="text">
+                                                                            <input name="participant_address" placeholder="Alamat KTP Partisipan" class="form-control here" required="required" type="text">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -101,7 +101,7 @@
                                                                     <div class="form-group row">
                                                                         <label for="no_ktp" class="col-4 col-form-label">No KTP</label>
                                                                         <div class="col-8">
-                                                                            <input name="no_ktp[]" placeholder="No KTP Partisipan" class="form-control here" required="required" type="text">
+                                                                            <input name="no_ktp" placeholder="No KTP Partisipan" class="form-control here" required="required" type="text">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -111,7 +111,7 @@
                                                                     <div class="form-group row">
                                                                         <label for="no_kk" class="col-4 col-form-label">No Kartu Keluarga</label>
                                                                         <div class="col-8">
-                                                                            <input name="no_kk[]" placeholder="No Kartu Keluarga" class="form-control here" required="required" type="text">
+                                                                            <input name="no_kk" placeholder="No Kartu Keluarga" class="form-control here" required="required" type="text">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -119,7 +119,7 @@
                                                                     <div class="form-group row">
                                                                         <label for="no_akte" class="col-4 col-form-label">No Akte Kelahiran</label>
                                                                         <div class="col-8">
-                                                                            <input name="no_akte[]" placeholder="No Akte Kelahiran" class="form-control here" required="required" type="text">
+                                                                            <input name="no_akte" placeholder="No Akte Kelahiran" class="form-control here" required="required" type="text">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -129,7 +129,7 @@
                                                             <div class="form-group row">
                                                                 <label for="no_ijazah" class="col-4 col-form-label">No Ijazah</label>
                                                                 <div class="col-8">
-                                                                    <input name="no_ijazah[]" placeholder="No Ijazah" class="form-control here" required="required" type="text">
+                                                                    <input name="no_ijazah" placeholder="No Ijazah" class="form-control here" required="required" type="text">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">

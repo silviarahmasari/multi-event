@@ -29,6 +29,10 @@
                             <input type="text" class="form-control" name="sport_name" required>
                         </div>
                         <div class="form-group">
+                            <label>Jumlah participant maximal</label><span style="color: red">*</span>
+                            <input type="text" class="form-control" name="max_participant" required>
+                        </div>
+                        <div class="form-group">
                             <label>Keterangan</label>
                             <textarea class="summernote-simple" name="notes"></textarea>
                         </div>

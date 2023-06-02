@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class SubDistrictProfileController extends Controller
 {
     public function indexupdateSubProfile(){
-        $subdisctrictprofile = DB::table('sub_district_profiles')->get();
+        $subdisctrictprofile = DB::table('sub_district_profiles')->where('sub_district_profiles.id_user', Auth::user()->id)->get();
         $contactpeople = DB::table('contact_people')->get();
         $data = array(
             'menu' => 'subdisctrictprofile',
@@ -18,7 +18,7 @@ class SubDistrictProfileController extends Controller
             'subdisctrictprofile' => $subdisctrictprofile,
             'contactpeople' => $contactpeople
         );
-        // dd($data);
+        // dd($subdisctrictprofile);
         return view('user.subdistrict.subdistrictdata', $data);
     }
 

@@ -6,8 +6,6 @@ use App\Http\Controllers\SubDistrictProfileController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SportController;
-use App\Http\Controllers\ParticipantController;
-use App\Http\Controllers\MapDistrictSportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +50,16 @@ Route::post('/post_register', [UsersController::class, 'postRegister'])->name('p
 Route::get('/logout', [UsersController::class, 'Logout'])->name('logout');
 
 Route::middleware(['auth', 'CheckRole:1'])->group(function () {
-    Route::get('/admin', [DashboardController::class, 'adminCount']);
+    Route::get('/dashboard/admin', [DashboardController::class, 'dashboardAdmin']);
+
+    // cabor
+    Route::get('/camatlist', [CamatController::class, 'index']);
+
+    // admin
+    Route::get('/adminlist', [AdminController::class, 'index']);
+
+    // admin
+    Route::get('/participantlist', [ParticipantController::class, 'index']);
 
     // sport -> cabor
     Route::get('/sport/index', [SportController::class, 'index']);
@@ -64,9 +71,10 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
 });
 
-Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-    Route::get('/camat', [DashboardController::class, 'camatCount']);
-    
+Route::middleware(['auth', 'CheckRole:3'])->group(function () {
+    Route::get('/camat', function () {
+        return view('dashboard.camat');
+    });
     Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
     Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
     Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);

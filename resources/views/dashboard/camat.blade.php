@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layout.mainlayout')
 @section('title', 'Dashboard Camat')
 
@@ -90,3 +91,5 @@
         </div>
     </div>
 @endsection
+=======
+>>>>>>> 1db3d73d3553158088d261e281557f0707e45369

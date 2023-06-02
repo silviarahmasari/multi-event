@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sport;
+use App\Models\Participant;
 use App\Models\MapDistrictSport;
 use App\Models\SubDistrictProfile;
 use App\Models\Kecamatan;
@@ -22,7 +23,6 @@ class MapDistrictSportController extends Controller
         $mds = MapDistrictSport::select('*','map_district_sports.id as id_map_district_sports')
         ->join('sports','sports.id','=','map_district_sports.id_sport')
         ->get();
-        // dd($mds);
 
         return view('user.pendaftaran.pendaftarandata', compact('mds'));
     }
@@ -60,7 +60,7 @@ class MapDistrictSportController extends Controller
         ->get();
 
         if (count($mds) > 0) {
-            return redirect('mapdistrictsport/create')->with('error', 'Nama grup pada cabang olahraga ini telah terdaftar.');
+            return redirect('mapdistrictsport/create')->with('error', 'Nama grup telah terdaftar pada cabang olahraga ini.');
         } 
         
         $mds = new MapDistrictSport;
@@ -69,11 +69,10 @@ class MapDistrictSportController extends Controller
         $mds -> group_name = $request -> group_name;
         $mds -> status = "On Process";
         $mds -> save();
-        // dd($mds->id);
+
         if(!$mds->id){
             return redirect('/participant/index')->with('error', 'Pendaftaran grup gagal.');
         }
-        // return redirect('/participant/index')->with('error', 'Pendaftaran grup gagal.');
         return redirect('participant/create/'.$mds->id)->with('success', 'Tambahkan partisipan dalam grup.');
     }
 
@@ -97,18 +96,14 @@ class MapDistrictSportController extends Controller
     public function edit($id)
     {
         $sports = Sport::all();
-        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport')
+        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport', 'map_district_sports.status as status_map_district')
         ->leftjoin('sports','sports.id','=','map_district_sports.id_sport')
         ->leftjoin('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
         ->where('map_district_sports.id', $id)
         ->get();
-        $participants = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport', 'participants.id as id_participant')
-        ->leftjoin('sports','sports.id','=','map_district_sports.id_sport')
-        ->leftjoin('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
-        ->leftjoin('participants','participants.id','=','map_district_sports.id')
-        ->where('map_district_sports.id', $id)
+        $participants = Participant::where('id_map_district_sport', $id)
         ->get();
-        // dd($participants);
+        // dd(count($participants));
 
         return view('user.pendaftaran.pendaftaranedit', compact('sports','mds', 'participants'));
     }

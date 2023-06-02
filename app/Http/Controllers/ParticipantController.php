@@ -7,6 +7,7 @@ use App\Models\MapDistrictSport;
 use App\Models\Sport;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ParticipantController extends Controller
 {
@@ -35,9 +36,14 @@ class ParticipantController extends Controller
      */
     public function create($id)
     {
-        $mds = MapDistrictSport::find($id);
+        $index = 1;
+        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport')
+        ->join('sports', 'sports.id', '=', 'map_district_sports.id_sport')
+        ->where('map_district_sports.id', $id)
+        ->get();
+        // dd($mds);
 
-        return view('user.pendaftaran.pendaftaranpartisipan', compact('mds'));
+        return view('user.pendaftaran.pendaftaranpartisipan', compact('mds', 'index'));
     }
 
     /**
@@ -48,21 +54,43 @@ class ParticipantController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport')
+        ->join('sports', 'sports.id', '=', 'map_district_sports.id_sport')
+        ->where('map_district_sports.id', $id)
+        ->get();
+
+        $images = [];
+        foreach ($request->file('pas_foto') as $key => $file)
+        {
+            // Get Filename
+            $filename = $file->getClientOriginalName();
+            //Get just extension
+            $extension = $file->getClientOriginalExtension();
+            //Filename to Store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            //Upload Image
+            $path = $file->storeAs('public/Pas Foto',$fileNameToStore);
+            array_push($images, $fileNameToStore);
+        }
+
+        $count_participant = (int)$request->participant_count;
         
-        $mds = MapDistrictSport::find($id);
-        $participant = new Participant;
-        $participant -> id_map_district_sport = $id;
-        $participant -> participant_name = $request -> participant_name;
-        $participant -> participant_dob = $request -> participant_dob;
-        $participant -> participant_gender = $request -> participant_gender;
-        $participant -> participant_address = $request -> participant_address;
-        $participant -> participant_domicile = $request -> participant_domicile;
-        $participant -> no_ktp = $request -> no_ktp;
-        $participant -> no_kk = $request -> no_kk;
-        $participant -> no_akte = $request -> no_akte;
-        $participant -> no_ijazah = $request -> no_ijazah;
-        $participant -> pas_foto = $request -> pas_foto;
-        $participant -> save();
+        for($i = 0; $i < $count_participant; $i++) {
+            $participant = new Participant;
+            $participant -> id_map_district_sport = $id;
+            $participant -> participant_name = $request -> participant_name[$i];
+            $participant -> participant_dob = $request -> participant_dob[$i];
+            $participant -> participant_gender = $request -> participant_gender[$i];
+            $participant -> participant_address = $request -> participant_address[$i];
+            $participant -> participant_domicile = $request -> participant_domicile[$i];
+            $participant -> no_ktp = $request -> no_ktp[$i];
+            $participant -> no_kk = $request -> no_kk[$i];
+            $participant -> no_akte = $request -> no_akte[$i];
+            $participant -> no_ijazah = $request -> no_ijazah[$i];
+            $participant -> pas_foto = $images[$i];
+            $participant -> save();
+        }
+
 
         if(!$participant->id){
             return redirect('pendaftaran/index')->with('error', 'Pendaftaran partisipan gagal.');

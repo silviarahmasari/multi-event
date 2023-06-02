@@ -1,4 +1,4 @@
-@extends('layout.mainlayout')
+@extends('layout.layout_camat')
 @section('title', 'Camat | Pendaftaran')
 
 @section('content')

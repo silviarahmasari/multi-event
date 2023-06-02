@@ -16,6 +16,16 @@
                 <div class="card-header">
                     <h4>Detail Grup</h4>
                 </div>
+                @if (Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible show fade mx-4">
+                        <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
+                                <span>×</span>
+                            </button>
+                            {{ Session::get('error') }}
+                        </div>
+                    </div>
+                @endif
                 <div class="card-body">
                     <form action="{{ URL::to('mapdistrictsport/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -24,7 +34,7 @@
                             <div class="col-8">
                                 <select name="id_sport" id="id_sport" class="form-control">
                                     @foreach($sports as $sport)
-                                        <option value="{{ $sport->id }}">{{ $sport->sport_name }}</option>
+                                        <option value="{{ $sport->id }}" {{ old('id_sport', $sport->id) === $sport->id ? 'selected' : '' }}>{{ $sport->sport_name }}</option>
                                     @endforeach
                                 </select>
                             </div>

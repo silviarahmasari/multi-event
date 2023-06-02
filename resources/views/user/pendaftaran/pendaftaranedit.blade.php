@@ -1,4 +1,4 @@
-@extends('layout.mainlayout')
+@extends('layout.layout_camat')
 @section('title', 'Camat | Pendaftaran')
 
 @section('content')
@@ -57,14 +57,20 @@
                                 <label for="group_name" class="col-sm-3 col-form-label">Status</label>
                                 <div class="col-9">
                                     <input id="group_name" name="group_name" placeholder="Nama Group"
-                                        class="form-control here" value="{{ $mds[0]->status }}" required="required"
+                                        class="form-control here" value="{{ $mds[0]->status_map_district }}" required="required"
                                         type="text" disabled>
                                 </div>
                             </div>
-                            <div class="form-group row col-auto float-right">
-                                <button class="btn btn-success" type="submit"><i class="fa fa-plus-square"> Simpan
-                                        Perubahan </i></button>
-                            </div>
+                            @switch($mds[0]->status_map_district)
+                                @case($mds[0]->status_map_district === "On Process")
+                                    <div class="form-group row col-auto float-right">
+                                        <button class="btn btn-success" type="submit" disabled><i class="fa fa-plus-square"> Simpan
+                                                Perubahan </i></button>
+                                    </div>
+                                @break
+
+                                @default
+                            @endswitch
                         </form>
                     </div>
                 </div>

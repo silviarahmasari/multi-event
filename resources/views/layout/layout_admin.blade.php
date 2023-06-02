@@ -50,7 +50,7 @@
                                 <li><a class="nav-link" href="{{ URL::to('adminlist') }}">Admin</a></li>
                                 <li><a class="nav-link" href="{{ URL::to('sport/index') }}">Sport</a></li>
                                 <li><a class="nav-link" href="{{ URL::to('camatlist') }}">Camat</a></li>
-                                <li><a class="nav-link" href="{{ URL::to('participantlist') }}">Peserta</a></li>
+                                <li><a class="nav-link" href="{{ URL::to('/participantlist') }}">Peserta</a></li>
                             </ul>
                         </li>
                         <li>

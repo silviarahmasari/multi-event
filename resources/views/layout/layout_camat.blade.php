@@ -21,7 +21,7 @@
                         <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
                         <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{ URL::to('') }}" class="dropdown-item has-icon text-danger">
+                                <a href="/subprofil/editsubprofil/{id}" class="dropdown-item has-icon text-danger">
                                     <i class="fas fa-sign-out-alt"></i><b>PROFILE</b>
                                 </a>
                                 <a href="{{ URL::to('logout') }}" class="dropdown-item has-icon text-danger">
@@ -44,7 +44,7 @@
                         <li><a class="nav-link" href="{{ URL::to('dashboard/camat') }}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
                         </li>
                         <li>
-                            <a class="nav-link" href="{{ URL::to('') }}"><i class="fab fa-readme"></i> <span>Pendaftaran</span>
+                            <a class="nav-link" href="{{ URL::to('mapdistrictsport/index') }}"><i class="fab fa-readme"></i> <span>Pendaftaran</span>
                             </a>
                         </li>
                         <li>

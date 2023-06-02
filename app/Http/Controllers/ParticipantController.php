@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class ParticipantController extends Controller
 {
+    public function index2()
+    {
+        $participant = Participant::get();
+
+        return view('participant.index', compact('participant'));
+    }
     /**
      * Display a listing of the resource.
      *

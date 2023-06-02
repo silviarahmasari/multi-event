@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CamatController;
 use App\Http\Controllers\SubDistrictProfileController;
+use App\Http\Controllers\MapDistrictSportController;
+use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SportController;
@@ -59,7 +63,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/adminlist', [AdminController::class, 'index']);
 
     // admin
-    Route::get('/participantlist', [ParticipantController::class, 'index']);
+    Route::get('/participantlist', [ParticipantController::class, 'index2']);
 
     // sport -> cabor
     Route::get('/sport/index', [SportController::class, 'index']);
@@ -72,7 +76,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
 });
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-    Route::get('/camat', [DashboardController::class, 'camatCount']);
+    Route::get('/dashboard/camat', [DashboardController::class, 'camatCount']);
     
     Route::get('/subprofil/editsubprofil/{id}', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
 

@@ -93,6 +93,28 @@
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
+                                        <div class="d-flex form-group col-md-8">
+                                            <div class="form-group col-md-3">
+                                                <img src="{{ asset('storage/Pas Foto/'.$participant->pas_foto) }}" alt="" title="" width="200px">
+    
+                                            </div>
+                                            <div class="form-group col-md-2 justify-content-center">
+                                                <i class="fas fa-arrow-right" style="font-size: 2em"></i>
+                                            </div>
+                                            <div class="form-group col-md-3" id="preview">
+    
+                                            </div>
+                                        </div>
+                                        {{-- <div class="text-center" id="preview"></div> --}}
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <input id="pas_foto" name="pas_foto" onchange="getImagePreview(event)"
+                                            class="form-control" value="{{ $participant->pas_foto }}"
+                                            required="required" type="file">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
                                         <label for="participant_name">Nama Peserta</label>
                                         <input id="participant_name" name="participant_name" placeholder="Nama Group"
                                             class="form-control" value="{{ $participant->participant_name }}"
@@ -168,4 +190,19 @@
             </div>
         @endforeach
     </div>
+@endsection
+
+@section('custom_script')
+<script type="text/javascript">
+    function getImagePreview(event)
+    {
+        var image = URL.createObjectURL(event.target.files[0]);
+        var imagediv = document.getElementById("preview");
+        var newimg = document.createElement("img");
+        imagediv.innerHTML='';
+        newimg.src = image;
+        newimg.width = "200";
+        imagediv.appendChild(newimg);
+    }
+</script>
 @endsection

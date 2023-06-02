@@ -10,6 +10,7 @@ use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SportController;
+use App\Http\Controllers\VerifikasiPendaftaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,12 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/sport/edit/{sport}', [SportController::class, 'edit']);
     Route::post('/sport/update/{sport}', [SportController::class, 'update']);
     Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
+
+    //verifikasipendaftaran
+    Route::get('/verifkasi-pendaftaran/index', [VerifikasiPendaftaranController::class, 'index']);
+    Route::get('/detail-pendaftaran/{id}', [VerifikasiPendaftaranController::class, 'indexDetail']);
+    Route::post('/verif/{id}', [VerifikasiPendaftaranController::class, 'VerifikasiPendaftaran']);
+
 });
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt

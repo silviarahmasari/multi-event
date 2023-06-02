@@ -1,12 +1,11 @@
-<<<<<<< HEAD
+
   <!-- General JS Scripts -->
 
   {{-- <!-- General JS Scripts -->
   <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script> --}}
 
-=======
->>>>>>> 1db3d73d3553158088d261e281557f0707e45369
+
   <script src="{{ asset('assets/jQuery/jquery.js') }}"></script>
   <script src="{{ asset('assets/jQuery/jquery-nicescroll.js') }}"></script>
   <script src="{{ asset('assets/js/moment.min.js') }}"></script>

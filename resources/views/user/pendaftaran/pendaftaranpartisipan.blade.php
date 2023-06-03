@@ -15,14 +15,13 @@
         <div class="col-12 col-sm-12 col-lg-12 px-0">
             <div class="card">
                 <div class="card-header">
-                    <h4>Grup : {{ $mds[0]->group_name }}</h4>
+                    <h4>Detail Grup</h4>
                     <div class="card-header-action">
-                        <a data-collapse="#mycard-collapse-{{ $mds[0]->id_map_district_sport }}-{{ $mds[0]->group_name }}"
+                        <a data-collapse="#mycard-collapse-{{ $mds[0]->id_map_district_sport }}-999"
                             class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                     </div>
                 </div>
-                <div class="collapse show"
-                    id="mycard-collapse-{{ $mds[0]->id_map_district_sport }}-{{ $mds[0]->group_name }}">
+                <div class="collapse show" id="mycard-collapse-{{ $mds[0]->id_map_district_sport }}-999">
                     <div class="card-body">
                         <form action="{{ URL::to('mapdistrictsport/update/' . $mds[0]->id_map_district_sport) }}"
                             method="POST" enctype="multipart/form-data">
@@ -30,59 +29,42 @@
                             <div class="form-group row">
                                 <label for="id_sub_district" class="col-sm-3 col-form-label">Kecamatan</label>
                                 <div class="col-9">
-                                    <input id="id_sub_district" name="id_sub_district" placeholder="Nama Group"
-                                        class="form-control" value="{{ $mds[0]->nama_kecamatan }}" required="required"
-                                        type="text" disabled>
+                                    <input id="id_sub_district" name="id_sub_district" class="form-control"
+                                        value="{{ $mds[0]->nama_kecamatan }}" type="text" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="id_sport" class="col-sm-3 col-form-label">Cabang Olahraga</label>
                                 <div class="col-9">
-                                    @switch($mds[0]->status)
-                                        @case($mds[0]->status === 'On Process')
-                                            <select name="id_sport" id="id_sport" class="form-control">
-                                                @foreach ($sports as $sport)
-                                                    <option value="{{ $sport->id }}"
-                                                        class="@if ($mds[0]->id_sport === $sport->id) selected @endif form-control">
-                                                        {{ $sport->sport_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        @break
-
-                                        @case($mds[0]->status === 'Verified' || 'Unverified')
-                                            <input id="id_sport" name="id_sport" placeholder="Nama Group" class="form-control"
-                                                value="{{ $mds[0]->sport_name }}" required="required" type="text" disabled>
-                                        @break
-
-                                    @endswitch
+                                    <input id="id_sport" name="id_sport" class="form-control"
+                                        value="{{ $mds[0]->sport_name }}" type="text" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="group_name" class="col-sm-3 col-form-label">Nama Group</label>
                                 <div class="col-9">
-                                    <input id="group_name" name="group_name" placeholder="Nama Group"
-                                        class="form-control here" value="{{ $mds[0]->group_name }}" required="required"
-                                        type="text">
+                                    <input id="group_name" name="group_name" class="form-control here"
+                                        value="{{ $mds[0]->group_name }}" type="text" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="group_name" class="col-sm-3 col-form-label">Status</label>
                                 <div class="col-9">
-                                    <input id="group_name" name="group_name" placeholder="Nama Group"
-                                        class="form-control here" value="{{ $mds[0]->status }}" required="required"
-                                        type="text" disabled>
+                                    @switch($mds[0]->map_district_sport_status)
+                                        @case($mds[0]->map_district_sport_status === 'On Process')
+                                            <span class="badge badge-warning">Sedang Diproses</span>
+                                        @break
+
+                                        @case($mds[0]->map_district_sport_status === 'Verified')
+                                            <span class="badge badge-success"></span>
+                                        @break
+
+                                        @case($mds[0]->map_district_sport_status === 'Unverified')
+                                            <span class="badge badge-danger">Tidak Lolos</span>
+                                        @break
+                                    @endswitch
                                 </div>
                             </div>
-                            @switch($mds[0]->status)
-                                @case($mds[0]->status === 'On Process')
-                                    <div class="form-group row col-auto float-right">
-                                        <button class="btn btn-success" type="submit"><i class="fa fa-plus-square" disabled> Simpan
-                                                Perubahan </i></button>
-                                    </div>
-                                @break
-
-                                @default
-                            @endswitch
                         </form>
                     </div>
                 </div>
@@ -107,9 +89,14 @@
                                     type="text" hidden>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="pas_foto">Foto Peserta</label>
+                                        <div class="col-md-3" id="preview{{ $i }}"></div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
                                         <input id="pas_foto" name="pas_foto[]" placeholder="Tunjukkan pesonamu"
-                                            class="form-control" type="file">
+                                            class="form-control" type="file"
+                                            onchange="getImagePreview(event, <?php echo $i; ?>)">
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -180,4 +167,20 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('custom_script')
+    <script type="text/javascript">
+        function getImagePreview(event, index) {
+            image = URL.createObjectURL(event.target.files[0]);
+            imagediv = document.getElementById(`preview${index}`);
+            newimg = document.createElement("img");
+            // imgs.push(newimg);
+            imagediv.innerHTML = '';
+            newimg.src = image;
+            newimg.height = "200";
+            imagediv.appendChild(newimg);
+
+        }
+    </script>
 @endsection

@@ -43,9 +43,12 @@ class ParticipantController extends Controller
         ->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan', '=', 'map_district_sports.id_sub_district')
         ->where('map_district_sports.id', $id)
         ->get();
+        $participants = Participant::where('id_map_district_sport', $id)
+        ->get();
+        $count_participant = count($participants);
         // dd($mds);
 
-        return view('user.pendaftaran.pendaftaranpartisipan', compact('mds', 'index', 'sports'));
+        return view('user.pendaftaran.pendaftaranpartisipan', compact('mds', 'index', 'sports', 'count_participant'));
     }
 
     /**
@@ -56,13 +59,9 @@ class ParticipantController extends Controller
      */
     public function store(Request $request, $id)
     {
-        // dd(count($request->participant_count));
-        // dd($request->all());
-        // $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport')
-        // ->join('sports', 'sports.id', '=', 'map_district_sports.id_sport')
-        // ->where('map_district_sports.id', $id)
-        // ->get();
-        // dd($mds);
+        $filled = [];
+        $filled = $request->pas_foto;
+        $filled = count($filled);
 
         $images = [];
         foreach ($request->file('pas_foto') as $key => $file)
@@ -75,11 +74,8 @@ class ParticipantController extends Controller
             $path = $file->storeAs('public/Pas_Foto',$fileNameToStore);
             array_push($images, $fileNameToStore);
         }
-        // dd($images);
-
-        $count_participant = count($request->participant_count);
         
-        for($i = 0; $i < $count_participant; $i++) {
+        for($i = 0; $i < $filled; $i++) {
             $participant = new Participant;
             $participant -> id_map_district_sport = $id;
             $participant -> participant_name = $request -> participant_name[$i];
@@ -119,9 +115,19 @@ class ParticipantController extends Controller
      * @param  \App\Models\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Participant $participant)
+    public function edit($id)
     {
-        //
+        $sports = Sport::all();
+        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport', 'map_district_sports.status as status_map_district')
+        ->leftjoin('sports','sports.id','=','map_district_sports.id_sport')
+        ->leftjoin('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
+        ->where('map_district_sports.id', $id)
+        ->get();
+        $participants = Participant::where('id_map_district_sport', $id)
+        ->get();
+        // dd($mds);
+
+        return view('user.pendaftaran.pendaftaranedit', compact('sports','mds', 'participants'));
     }
 
     /**
@@ -148,6 +154,7 @@ class ParticipantController extends Controller
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             //Upload Image
             $path = $file->storeAs('public/Pas_Foto',$fileNameToStore);
+            $participant -> pas_foto = $fileNameToStore;
 
         }
 
@@ -160,10 +167,9 @@ class ParticipantController extends Controller
         $participant -> no_kk = $request -> no_kk;
         $participant -> no_akte = $request -> no_akte;
         $participant -> no_ijazah = $request -> no_ijazah;
-        $participant -> pas_foto = $fileNameToStore;
         $participant -> save();
 
-
+        return redirect('participant/edit/'.$participant->id_map_district_sport)->with('success', 'Pendaftaran berhasil diperbarui.');
     }
 
     /**

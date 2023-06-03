@@ -72,7 +72,7 @@
         </div>
         <form action="{{ URL::to('participant/store/' . $mds[0]->id_map_district_sport) }}" method="POST"
             enctype="multipart/form-data">
-            @for ($i = 0; $i < $mds[0]->max_participant; $i++)
+            @for ($i = 0; $i < $mds[0]->max_participant - $count_participant; $i++)
                 <div class="col-12 col-sm-12 col-lg-12 px-0">
                     <div class="card">
                         <div class="card-header">
@@ -85,8 +85,7 @@
                         <div class="collapse hide" id="mycard-collapse-{{ $i }}">
                             <div class="card-body">
                                 @csrf
-                                <input id="participant_count" name="participant_count[]" value="{{ $index }}"
-                                    type="text" hidden>
+                                {{-- <input id="participant_count" name="participant_count[]" value="{{ $index }}" type="text" hidden> --}}
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div class="col-md-3" id="preview{{ $i }}"></div>
@@ -110,6 +109,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="participant_gender">Jenis Kelamin</label>
                                         <select name="participant_gender[]" class="form-control">
+                                            <option value="@php null @endphp">-- Pilih Jenis Kelamin --</option>
                                             <option value="Laki-laki">Laki-Laki</option>
                                             <option value="Perempuan">Perempuan</option>
                                         </select>

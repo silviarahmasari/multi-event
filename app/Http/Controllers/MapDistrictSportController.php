@@ -109,7 +109,6 @@ class MapDistrictSportController extends Controller
         ->get();
         $participants = Participant::where('id_map_district_sport', $id)
         ->get();
-        // dd($mds);
 
         return view('user.pendaftaran.pendaftaranedit', compact('sports','mds', 'participants'));
     }

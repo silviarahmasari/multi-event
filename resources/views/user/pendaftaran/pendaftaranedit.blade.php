@@ -135,7 +135,7 @@
                                     <div class="form-group col-md-12">
                                         <input id="pas_foto" name="pas_foto" onchange="getImagePreview(event, <?php echo $index?>)"
                                             class="form-control" value="{{ $participant->pas_foto }}"
-                                            required="required" type="file">
+                                            type="file">
                                     </div>
                                 </div>
                                 <div class="form-row">

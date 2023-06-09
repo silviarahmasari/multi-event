@@ -37,7 +37,7 @@
                             <h4>Total Team</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $peserta }} --}}
+                            {{ $team }}
                         </div>
                     </div>
                 </div>

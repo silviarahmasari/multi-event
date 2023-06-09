@@ -1,6 +1,5 @@
 @extends('layout.layout_camat')
 @section('title', 'Camat | Pendaftaran')
-@include('user.pendaftaran.modaldobol')
 
 @section('custom_css')
     <!-- CSS Libraries -->

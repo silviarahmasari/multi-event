@@ -66,17 +66,20 @@
                                         type="text" disabled>
                                 </div>
                             </div>
-                            <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}"
-                                method="POST" enctype="multipart/form-data">
-                                @csrf
                             @switch($mds[0]->status_map_district_sport)
                                 @case($mds[0]->status_map_district_sport === 'On Process')
+                                <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                 <div class="form-group row col-auto float-right">
-                                    <button class="btn btn-success" type="submit"><input class="btn btn-success" value="Verified" name="status" hidden>Verifikasi Pendaftaran</button>
+                                    <button class="btn btn-success" type="submit"><input class="btn btn-success" value="Verified" id="statusverif" name="status" hidden>Verifikasi Pendaftaran</button>
                                 </div>
+                                </form>
+                                <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                 <div class="form-group row col-auto float-right">
-                                    <button class="btn btn-success" type="submit"><input class="btn btn-danger" value="Unverified" name="status" hidden>Tolak Pendaftaran</button>
+                                    <button class="btn btn-danger" type="submit"><input class="btn btn-danger" value="Unverified" id="statusunverif"name="status" hidden>Tolak Pendaftaran</button>
                                 </div>
+                                </form>
                                 @break
                                 @case($mds[0]->status_map_district_sport === 'Verified')
                                 <div class="form-group row col-auto float-right">
@@ -89,7 +92,6 @@
                                 </div>
                                 @break
                             @endswitch
-                        </form>
                     </div>
                 </div>
             </div>

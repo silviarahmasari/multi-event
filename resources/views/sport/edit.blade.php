@@ -30,6 +30,11 @@
                                 required>
                         </div>
                         <div class="form-group">
+                            <label>Jumlah Partisipan</label><span style="color: red">*</span>
+                            <input type="number" class="form-control" name="max_participant" value="{{ $sport->max_participant }}"
+                                required>
+                        </div>
+                        <div class="form-group">
                             <label>Keterangan</label>
                             <textarea class="summernote-simple" name="notes">{{ $sport->notes }}</textarea>
                         </div>

@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <input id="pas_foto" name="pas_foto[]" placeholder="Tunjukkan pesonamu"
+                                        <input id="pas_foto" name="pas_foto[]" placeholder="Pas Foto"
                                             class="form-control" type="file"
                                             onchange="getImagePreview(event, <?php echo $i; ?>)">
                                     </div>

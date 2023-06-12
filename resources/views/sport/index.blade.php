@@ -55,6 +55,7 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th class="text-center">Nama Cabang Olahraga</th>
+                                        <th class="text-center">Jumlah Partisipan</th>
                                         <th class="text-center">Keterangan</th>
                                         <th class="text-center">Tanggal Dibuat</th>
                                         <th class="text-center">Terakhir Diperbarui</th>
@@ -66,6 +67,7 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $item->sport_name }}</td>
+                                            <td>{{ $item->max_participant }}</td>
                                             <td>{!! $item->notes !!}</td>
                                             <td class="text-center">{{ $item->created_at }}</td>
                                             <td class="text-center">{{ $item->updated_at }}</td>

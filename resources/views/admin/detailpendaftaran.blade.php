@@ -205,10 +205,10 @@
                                             required="required" type="text" disabled>
                                     </div>
                                 </div>
-                                <div class="form-group row col-auto float-right">
+                                {{-- <div class="form-group row col-auto float-right">
                                     <button class="btn btn-success" type="submit"><i class="fa fa-plus-square"> Simpan
                                             Perubahan </i></button>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
                     </div>

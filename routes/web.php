@@ -75,6 +75,14 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::post('/sport/update/{sport}', [SportController::class, 'update']);
     Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
 
+    // CRUD USER
+    Route::get('/user', [UsersController::class, 'indexUser']);
+    Route::get('/user/create', [UsersController::class, 'indexCreateuser']);
+    Route::post('/user/store', [UsersController::class, 'CreateUser']);
+    Route::get('/user/edit/{user}', [UsersController::class, 'editUser']);
+    Route::post('/user/update/{user}', [UsersController::class, 'updateUser']);
+    Route::get('/user/delete/{user}', [UsersController::class, 'destroy']);
+
     //verifikasipendaftaran
     Route::get('/verifkasi-pendaftaran/index', [VerifikasiPendaftaranController::class, 'index']);
     Route::get('/detail-pendaftaran/{id}', [VerifikasiPendaftaranController::class, 'indexDetail']);

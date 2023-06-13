@@ -23,7 +23,7 @@ class UsersController extends Controller
 
     public function indexRegis()
     {
-        return view('registration');
+        return view('register');
     }
 
     public function preLogin(){
@@ -64,8 +64,8 @@ class UsersController extends Controller
 
     public function preRegister()
     {
-        $kecamatan = Kecamatan::all();
-        return view('registration', compact('kecamatan'));
+        $kecamatan = Kecamatan::where('id_kota', 114)->orderBy('nama_kecamatan')->get();
+        return view('register', compact('kecamatan'));
     }
 
     public function postRegister(Request $request)

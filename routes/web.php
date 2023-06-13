@@ -9,6 +9,7 @@ use App\Http\Controllers\MapDistrictSportController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KetupelController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\VerifikasiPendaftaranController;
 
@@ -119,4 +120,8 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttt
     Route::get('/participant/edit/{id}', [ParticipantController::class, 'edit']);
     Route::post('/participant/update/{id}', [ParticipantController::class, 'update']);
     Route::get('/participant/delete/{id}', [ParticipantController::class, 'destroy']);
+});
+
+Route::middleware(['auth', 'CheckRole:2'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+    Route::get('/dashboard/ketupel', [KetupelController::class, 'index']);  
 });

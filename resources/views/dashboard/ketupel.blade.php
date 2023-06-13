@@ -89,7 +89,7 @@
                                             <td class="text-center">{{ $item->nama_kecamatan }}</td>
                                             <td class="text-center">{{ $item->sport_name }}</td>
                                             <td class="text-center">{{ $item->notes }}</td>
-                                            <td class="text-center">{{ $item->status }}</td>
+                                            <td class="text-center">{{ $item->status_map }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

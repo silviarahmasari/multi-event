@@ -90,10 +90,12 @@
             </div>
         </div>
         @if (count($participants) < $mds[0]->max_participant)
+            @if($mds[0]->status_map_district === 'On Process')
             <div class="col-auto text-center mb-5">
                 <a href="{{ URL::to('participant/create/' . $mds[0]->id_map_district_sport) }}" class="btn btn-primary"
                     type="submit"><i class="fa fa-plus-square"> Tambah Peserta </i></a>
             </div>
+            @endif 
             <div class="col-auto text-left mb-1">
                 <span>Jumlah Peserta : {{ count($participants) }}/{{ $mds[0]->max_participant }} </span>
             </div>

@@ -93,7 +93,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
     Route::get('/dashboard/camat', [DashboardController::class, 'camatCount']);
-    
+
     Route::get('/subprofil/editsubprofil/{id}', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
 
     Route::get('/camat', function () {
@@ -122,6 +122,7 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttt
     Route::get('/participant/delete/{id}', [ParticipantController::class, 'destroy']);
 });
 
-Route::middleware(['auth', 'CheckRole:2'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-    Route::get('/dashboard/ketupel', [KetupelController::class, 'index']);  
+Route::middleware(['auth', 'CheckRole:2'])->group(function () {
+    Route::get('/dashboard/ketupel', [KetupelController::class, 'index']);
+    Route::get('/ketupel/detail/{id}', [KetupelController::class, 'show']);
 });

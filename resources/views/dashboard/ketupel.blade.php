@@ -79,6 +79,7 @@
                                         <th class="text-center">Olahraga</th>
                                         <th class="text-center">Notes</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,6 +91,9 @@
                                             <td class="text-center">{{ $item->sport_name }}</td>
                                             <td class="text-center">{{ $item->notes }}</td>
                                             <td class="text-center">{{ $item->status_map }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ URL::to('ketupel/detail/' . $item->id) }}" class="btn btn-warning">View Detail</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

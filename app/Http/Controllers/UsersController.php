@@ -44,6 +44,15 @@ class UsersController extends Controller
     }
 
     public function postLogin(Request $request){
+
+        $userFind = User::where('email', $request->email)->first();
+        if(!$userFind){
+            return redirect('/')->with('error', 'Harap ulangi login! Email atau password anda salah.');
+        }
+        if (!Hash::check($request->password, $userFind->password)) {
+            return redirect('/')->with('error', 'Harap ulangi login! Email atau password anda salah.');
+        }
+
         $data = $request->only('email', 'password');
         // dd(Auth::attempt($data));
         if(Auth::attempt($data)){

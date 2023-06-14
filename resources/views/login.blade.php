@@ -26,6 +26,13 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign in</h2>
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible show fade mx-4">
+                                <div class="alert-body">
+                                    <a style="color: red;">{{ Session::get('error') }}</a>
+                                </div>
+                            </div>
+                        @endif
                         <form action="{{ route('post_login') }}" method="POST" class="login-form" id="login-form">
                             @csrf
                             <div class="form-group">

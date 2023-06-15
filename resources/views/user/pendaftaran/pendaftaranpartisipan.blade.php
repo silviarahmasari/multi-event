@@ -78,8 +78,8 @@
                         <div class="card-header">
                             <h4>Peserta {{ $index }}</h4>
                             <div class="card-header-action">
-                                <a data-collapse="#mycard-collapse-{{ $i }}" class="btn btn-icon btn-info"
-                                    href="#"><i class="fas fa-plus"></i></a>
+                                <button data-collapse="#mycard-collapse-{{ $i }}" class="btn btn-icon btn-info"
+                                    onclick="requiredField(<?php echo $i; ?>)"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
                         <div class="collapse hide" id="mycard-collapse-{{ $i }}">
@@ -93,67 +93,74 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <input id="pas_foto" name="pas_foto[]" placeholder="Tunjukkan pesonamu"
-                                            class="form-control" type="file"
+                                        <label for="participant_name">Pas Foto</label><span class="text-danger">*</span>
+                                        <input id="pas_foto-{{ $i }}" name="pas_foto[]"
+                                            placeholder="Tunjukkan pesonamu" class="form-control" type="file"
                                             onchange="getImagePreview(event, <?php echo $i; ?>)">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="participant_name">Nama Peserta</label>
-                                        <input id="participant_name" name="participant_name[]" placeholder="Nama peserta"
-                                            class="form-control" type="text">
+                                        <label for="participant_name">Nama Peserta</label><span class="text-danger">*</span>
+                                        <input id="participant_name-{{ $i }}" name="participant_name[]"
+                                            placeholder="Nama peserta" class="form-control" type="text">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="participant_gender">Jenis Kelamin</label>
-                                        <select name="participant_gender[]" class="form-control">
+                                        <label for="participant_gender">Jenis Kelamin</label><span
+                                            class="text-danger">*</span>
+                                        <select id="participant_gender-{{ $i }}" name="participant_gender[]"
+                                            class="form-control">
                                             <option value="@php null @endphp">-- Pilih Jenis Kelamin --</option>
                                             <option value="Laki-laki">Laki-Laki</option>
                                             <option value="Perempuan">Perempuan</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="participant_dob">Tanggal Lahir</label>
-                                        <input id="participant_dob" name="participant_dob[]" placeholder="Tanggal lahir"
-                                            class="form-control" type="date">
+                                        <label for="participant_dob">Tanggal Lahir</label><span
+                                            class="text-danger">*</span>
+                                        <input id="participant_dob-{{ $i }}" name="participant_dob[]"
+                                            placeholder="Tanggal lahir" class="form-control" type="date">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="participant_address">Alamat KTP</label>
-                                        <input id="participant_address" name="participant_address[]"
+                                        <label for="participant_address">Alamat KTP</label><span
+                                            class="text-danger">*</span>
+                                        <input id="participant_address-{{ $i }}" name="participant_address[]"
                                             placeholder="Alamat sesuai ktp" class="form-control" type="text">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="participant_domicile">Alamat Domisili</label>
-                                        <input id="participant_domicile" name="participant_domicile[]"
-                                            placeholder="Alamat domisili" class="form-control" type="text">
+                                        <label for="participant_domicile">Alamat Domisili</label><span
+                                            class="text-danger">*</span>
+                                        <input id="participant_domicile-{{ $i }}"
+                                            name="participant_domicile[]" placeholder="Alamat domisili"
+                                            class="form-control" type="text">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="no_ktp">No KTP</label>
-                                        <input id="no_ktp" name="no_ktp[]" placeholder="Nomor ktp"
+                                        <label for="no_ktp">No KTP</label><span class="text-danger">*</span>
+                                        <input id="no_ktp-{{ $i }}" name="no_ktp[]" placeholder="Nomor ktp"
                                             class="form-control" type="text">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="no_kk">No Kartu Keluarga</label>
+                                        <label for="no_kk">No Kartu Keluarga</label><span class="text-danger">*</span>
                                         <input id="no_kk" name="no_kk[]" placeholder="Nomor kartu keluarga"
                                             class="form-control" type="text">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="no_akte">No Akte</label>
-                                        <input id="no_akte" name="no_akte[]" placeholder="Nomor akte kelahiran"
-                                            class="form-control" type="text">
+                                        <label for="no_akte">No Akte</label><span class="text-danger">*</span>
+                                        <input id="no_akte-{{ $i }}" name="no_akte[]"
+                                            placeholder="Nomor akte kelahiran" class="form-control" type="text">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="no_ijazah">No Ijazah</label>
-                                        <input id="no_ijazah" name="no_ijazah[]" placeholder="Nomor ijazah"
-                                            class="form-control" type="text">
+                                        <label for="no_ijazah">No Ijazah</label><span class="text-danger">*</span>
+                                        <input id="no_ijazah-{{ $i }}" name="no_ijazah[]"
+                                            placeholder="Nomor ijazah" class="form-control" type="text">
                                     </div>
                                 </div>
                             </div>
@@ -181,6 +188,15 @@
             newimg.height = "200";
             imagediv.appendChild(newimg);
 
+        }
+
+        function requiredField(index) {
+            var collapseId = "#mycard-collapse-" + index;
+            var fields = document.querySelectorAll(collapseId + " input, " + collapseId + " select");
+
+            fields.forEach(function(field) {
+                field.required = true;
+            });
         }
     </script>
 @endsection

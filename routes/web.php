@@ -125,4 +125,6 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttt
 Route::middleware(['auth', 'CheckRole:2'])->group(function () {
     Route::get('/dashboard/ketupel', [KetupelController::class, 'index']);
     Route::get('/ketupel/detail/{id}', [KetupelController::class, 'show']);
+    Route::get('/detail/cetak_pdf/{id}', [KetupelController::class, 'print'])->name('print.pdf');
+    Route::get('/cetak_pdf/{id}', [KetupelController::class, 'print_detail'])->name('cetak');
 });

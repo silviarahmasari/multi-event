@@ -18,7 +18,7 @@
         <div class="mt-5 mb-5">
             <h3 class="display-4">Preview Pendaftaran {{ $mds[0]->group_name}}</h3>
         </div>
-        <a href="{{ URL::to('cetak_pdf/' . $mds[0]->id) }}" class="btn btn-primary">Export Data</a>
+        <a href="{{ URL::to('cetak_pdf/' . $mds[0]->id_map_district_sport) }}" class="btn btn-primary">Export Data</a>
         <table class="table">
             <thead>
                 <tr>

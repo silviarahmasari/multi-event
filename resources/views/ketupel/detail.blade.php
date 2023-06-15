@@ -41,7 +41,7 @@
                     <div class="card-header">
                         <h4>Detail Peserta</h4>
                         <div class="card-header-action">
-                            <a href="{{ URL::to('detail/cetak_pdf/' . $mds[0]->id) }}" class="btn btn-primary">Print</a>
+                            <a href="{{ URL::to('detail/cetak_pdf/' . $mds[0]->id_map_district_sport) }}" class="btn btn-primary">Print</a>
                         </div>
                     </div>
                     <div class="card-body">

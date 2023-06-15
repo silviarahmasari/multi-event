@@ -92,7 +92,7 @@
                                             <td class="text-center">{{ $item->notes }}</td>
                                             <td class="text-center">{{ $item->status_map }}</td>
                                             <td class="text-center">
-                                                <a href="{{ URL::to('ketupel/detail/' . $item->id) }}" class="btn btn-warning">View Detail</a>
+                                                <a href="{{ URL::to('ketupel/detail/' . $item->id_map) }}" class="btn btn-warning">View Detail</a>
                                             </td>
                                         </tr>
                                     @endforeach

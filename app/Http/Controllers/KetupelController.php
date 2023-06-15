@@ -60,7 +60,7 @@ class KetupelController extends Controller
         // dd($mds);
         $participants = Participant::where('id_map_district_sport', $id)->get();
 
-        $pdf = PDF::loadview('ketupel.print', [
+        $pdf = PDF::loadview('ketupel.printpdf', [
             'mds' => $mds,
             'participants' => $participants
         ])->setOptions(['defaultFont' => 'sans-serif']);

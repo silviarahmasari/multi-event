@@ -20,7 +20,7 @@
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="{{ asset('assets/template/images/signin-image.jpg') }}" alt="sing in image"></figure>
+                        <figure><img src="{{ asset('assets/template/images/logo_KONI.png') }}" alt="sing in image"></figure>
                     </div>
 
                     <div class="signin-form">

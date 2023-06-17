@@ -65,7 +65,7 @@
         <footer class="main-footer">
             <div class="footer-left">
                 Copyright &copy; 2023 <div class="bullet"></div>
-                    <a href="">MULTI EVENT</a>
+                    <a href="">PORKOT PALEMBANG-MULTI EVENT</a>
             </div>
             <div class="footer-right">
                 Airlangga University

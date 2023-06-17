@@ -52,7 +52,7 @@
                                             <span class="badge badge-warning">Sedang Diproses</span>
                                         @break
                                         @case($mds[0]->status_map_district === 'Verified')
-                                            <span class="badge badge-success"></span>
+                                            <span class="badge badge-success">Lolos</span>
                                         @break
                                         @case($mds[0]->status_map_district === 'Unverified')
                                             <span class="badge badge-danger">Tidak Lolos</span>
